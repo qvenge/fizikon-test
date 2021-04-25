@@ -1,0 +1,6 @@
+.sphere-sprite {
+}
+
+.sphere-sprite__circle {
+  fill: url(#SphereGradient);
+}
