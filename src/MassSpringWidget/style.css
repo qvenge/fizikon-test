@@ -1,0 +1,75 @@
+.mass-spring {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.mass-spring__panel {
+  position: relative;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.25rem 0.8rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.mass-spring__panel_visualization {
+  grid-row-start: span 2;
+}
+
+.mass-spring__panel_visualization svg {
+  width: 100%;
+}
+
+.mass-spring__panel_controll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mass-spring__panel_information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mass-spring__button-list {
+  display: flex;
+}
+
+.mass-spring__button {
+  margin-left: 1rem;
+}
+
+.mass-spring__button:first-child {
+  margin-left: 0;
+}
+
+.mass-spring__input {
+  margin-top: 1rem;
+}
+
+.mass-spring__input:first-child {
+  margin-top: 0;
+}
+
+.mass-spring__label {
+  margin-top: 1rem;
+}
+
+.mass-spring__label:first-child {
+  margin-top: 0;
+}
+
+.mass-spring__screen {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  opacity: 0.5;
+}
