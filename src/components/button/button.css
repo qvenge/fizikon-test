@@ -1,0 +1,15 @@
+.button {
+  display: flex;
+  height: 2.5rem;
+  width: 9rem;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 0.4rem;
+  font: inherit;
+  color: #fff;
+  background-color: #007fff;
+  /* отображаем курсор в виде руки при наведении; некоторые
+  считают, что необходимо оставлять стрелочный вид для кнопок */
+  cursor: pointer;
+}
