@@ -54,8 +54,8 @@ export class MassSpring {
   _createMassSprite(props) {
     const position = this._springSprite.getEndPoint();
     return new SphereSprite({
-      x: position.x,
-      y: position.y,
+      cx: position.x,
+      cy: position.y,
       radius: props.massRadius,
     });
   }

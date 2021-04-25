@@ -6,6 +6,7 @@ module.exports = {
   extends: ['airbnb-base', 'prettier'],
   plugins: ['@babel'],
   rules: {
+    'no-underscore-dangle': 0,
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'prefer-destructuring': [
       'error',
@@ -17,5 +18,7 @@ module.exports = {
         enforceForRenamedProperties: false,
       },
     ],
+    'import/prefer-default-export': 0,
+    'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }],
   },
 };
