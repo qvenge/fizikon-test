@@ -5,6 +5,13 @@
   gap: 0.8rem;
 }
 
+@media (max-width: 690px) {
+  .mass-spring {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+}
+
 .mass-spring__panel {
   position: relative;
   padding: 1rem;
@@ -15,6 +22,9 @@
 }
 
 .mass-spring__panel_visualization {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   grid-row-start: span 2;
 }
 
