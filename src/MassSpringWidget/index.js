@@ -3,8 +3,9 @@ import { RangeInput } from '../components/range-input/range-input';
 import { Button } from '../components/button/button';
 import { Label } from '../components/label/label';
 import settings from './settings';
-
 import './style.css';
+
+const DEFAULT_MASS_RADIUS_FACTOR = 16;
 
 export class MassSpringWidget {
   constructor(model, params = {}) {
@@ -17,7 +18,7 @@ export class MassSpringWidget {
     this._startStopButton = null;
     this._resetButton = null;
     this._labels = null;
-    this._massRadiusFactor = params.massRadiusFactor ?? settings.massRadiusFactor;
+    this._massRadiusFactor = params.massRadiusFactor ?? DEFAULT_MASS_RADIUS_FACTOR;
     this.update = this.update.bind(this);
 
     this._init(params);

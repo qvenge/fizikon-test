@@ -1,5 +1,4 @@
 export default {
-  massRadiusFactor: 16,
   startButtonText: 'Запустить',
   stopButtonText: 'Остановить',
   resetButtonText: 'Сбросить',
@@ -36,9 +35,9 @@ export default {
     },
   ],
   labels: [
-    (modelParams) => `Циклическая частота: ${modelParams.w.toFixed(2)} рад/с`,
-    (modelParams) => `Время прошедшее после старта: ${modelParams.t.toFixed(2)} секунд`,
-    (modelParams) => `Количество полных колебаний: ${Math.floor(modelParams.n)}`,
-    (modelParams) => `Отклонение от равновесия: ${Math.round(modelParams.dx)} см`,
+    ({ w }) => `Циклическая частота: ${w.toFixed(2)} рад/с`,
+    ({ t }) => `Время прошедшее после старта: ${t.toFixed(2)} секунд`,
+    ({ n }) => `Количество полных колебаний: ${Math.floor(n)}`,
+    ({ dx }) => `Отклонение от равновесия: ${Math.round(dx)} см`,
   ],
 };
