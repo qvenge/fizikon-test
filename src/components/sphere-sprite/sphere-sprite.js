@@ -1,5 +1,4 @@
 import gradientsData from './gradients.json';
-
 import './sphere-sprite.css';
 
 export class SphereSprite {
@@ -47,15 +46,11 @@ export class SphereSprite {
     this._circle = circle;
 
     const gradients = gradientsData
-      .filter((gradient) => gradient?.colors?.length > 1)
-      .map((gradient) =>
+      .filter(({ colors }) => colors && colors.length > 1)
+      .map(({ id, cx, cy, r, colors }) =>
         [
-          `<radialGradient id="SphereGradient" cx="${gradient.cx ?? 0.5}" cy="${gradient.cy ?? 0.5}" r="${
-            gradient.r ?? 0.5
-          }">`,
-          ...gradient.colors.map(
-            (color, index, { length }) => `<stop offset="${index / (length - 1)}" stop-color="${color}"/>`,
-          ),
+          `<radialGradient id="${id}" cx="${cx ?? 0.5}" cy="${cy ?? 0.5}" r="${r ?? 0.5}">`,
+          ...colors.map((color, index, { length }) => `<stop offset="${index / (length - 1)}" stop-color="${color}"/>`),
           '</radialGradient>',
         ].join(''),
       );
