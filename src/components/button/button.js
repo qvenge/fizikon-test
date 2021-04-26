@@ -11,6 +11,14 @@ export class Button {
     return this._elem;
   }
 
+  getText() {
+    return this._elem.textContent;
+  }
+
+  setText(value) {
+    this._elem.textContent = value;
+  }
+
   _init(props) {
     this._elem = document.createElement('button');
     this._elem.className = this._className;
@@ -19,13 +27,5 @@ export class Button {
     if (typeof props.onClick === 'function') {
       this._elem.addEventListener('click', () => props.onClick.call(null, this));
     }
-  }
-
-  getText() {
-    return this._elem.textContent;
-  }
-
-  setText(value) {
-    this._elem.textContent = value;
   }
 }
