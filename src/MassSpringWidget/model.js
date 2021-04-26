@@ -120,7 +120,6 @@ export class MassSpringModel {
     }
   }
 
-  // возвращает время прошедшее с начала процесса
   _getTime() {
     const shift = this.isActive() ? (performance.now() - this._startTime) / 1000 : 0;
     return this._time + shift;

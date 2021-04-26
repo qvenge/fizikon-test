@@ -2,7 +2,7 @@ import { SpringSprite } from '../spring-sprite/spring-sprite';
 import { SphereSprite } from '../sphere-sprite/sphere-sprite';
 import './mass-spring.css';
 
-const DEFAULT_VIEWBOX = [400, 300];
+const DEFAULT_VIEWBOX = [0, 0, 400, 350];
 
 export class MassSpring {
   constructor(props = {}) {
@@ -31,7 +31,10 @@ export class MassSpring {
   _init(props) {
     this._elem = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     this._elem.classList.add(this._className);
-    this._elem.setAttribute('viewBox', `0 0 ${this._viewbox[0]} ${this._viewbox[1]}`);
+    this._elem.setAttribute(
+      'viewBox',
+      `${this._viewbox[0]} ${this._viewbox[1]} ${this._viewbox[2]} ${this._viewbox[3]}`,
+    );
     this._elem.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
     this._springSprite = this._createSpringSptite(props);
@@ -43,7 +46,7 @@ export class MassSpring {
 
   _createSpringSptite(props) {
     return new SpringSprite({
-      position: [this._viewbox[0] / 2, 0],
+      position: [this._viewbox[2] / 2, 0],
       coils: props.coils,
       coilDiameter: props.coilDiameter,
       springWidth: props.springWidth,

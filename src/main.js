@@ -12,7 +12,7 @@ massSpringSettings.inputs.forEach(({ paramName, inputParams: { value } }) => {
 const container = document.querySelector('.container');
 const model = new MassSpringModel(params);
 const widget = new MassSpringWidget(model, {
-  viewbox: [400, 350],
+  viewbox: [0, 0, 400, 350],
   coils: 4,
   springWidth: 8,
   coilDiameter: 40,
