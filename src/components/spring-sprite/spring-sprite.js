@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-import defaultSettings from './settings.json';
 import './spring-sprite.css';
 
 // коэффициент, который помогает высчитывать положение контрольных точек кривых
@@ -10,13 +9,13 @@ export class SpringSprite {
     this._className = 'spring-sprite';
     this._elem = null;
     this._paths = [];
-    this._coils = params.coils ?? defaultSettings.coils;
-    this._startPosition = params.position ?? defaultSettings.position;
-    this._springWidth = params.springWidth ?? defaultSettings.springWidth;
-    this._coilDiameter = params.coilDiameter ?? defaultSettings.coilDiameter;
+    this._coils = params.coils ?? 4;
+    this._startPosition = params.position ?? [10, 0];
+    this._springWidth = params.springWidth ?? 7;
+    this._coilDiameter = params.coilDiameter ?? 30;
     this._endPoint = null;
 
-    this._init(params.extension ?? defaultSettings.extension);
+    this._init(params.extension ?? 0);
   }
 
   getElem() {
@@ -29,27 +28,30 @@ export class SpringSprite {
     this._paths.forEach((path, index) => {
       const d = this._renderPathData(pathsData[index].commands);
       path.setAttributeNS(null, 'd', d);
-      // this._applyPoints(path, pathsData[index].data);
     });
+    this._updateEndPoint(pathsData);
   }
 
   // метод возращает координаты конца пружины
   // это нужно, чтобы спозиционировать шар
   getEndPoint() {
-    const lastSeg = this._paths[this._paths.length - 1].pathSegList.getItem(2);
-    return {
-      x: lastSeg.x + this._springWidth / 4,
-      y: lastSeg.y,
-    };
+    return { ...this._endPoint };
   }
 
   _init(extension) {
-    this._paths = this._generateCommandsOfPaths(extension).map(({ type, commands }) =>
-      this._createPath(type, this._renderPathData(commands)),
-    );
+    const pathsData = this._generateCommandsOfPaths(extension);
+    this._paths = pathsData.map(({ type, commands }) => this._createPath(type, this._renderPathData(commands)));
+    this._updateEndPoint(pathsData);
     this._elem = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     this._elem.classList.add(this._className);
     this._elem.append(...this._paths);
+  }
+
+  _updateEndPoint(pathsData) {
+    const { commands } = pathsData[pathsData.length - 1];
+    const { x: x1, y } = commands[2];
+    const { x: x2 } = commands[3];
+    this._endPoint = { x: x1 + (x2 - x1) / 2, y };
   }
 
   _calcHalfPeriod(extension) {
@@ -235,17 +237,4 @@ export class SpringSprite {
     path.setAttributeNS(null, 'd', d);
     return path;
   }
-
-  // _applyPoints(path, segments) {
-  //   for (let i = 0; i < segments.length; ++i) {
-  //     const pathSeg = path.pathSegList.getItem(i);
-  //     const seg = segments[i];
-  //     const props = Object.keys(seg);
-  //     props.forEach((prop) => {
-  //       if (prop in pathSeg) {
-  //         pathSeg[prop] = seg[prop];
-  //       }
-  //     });
-  //   }
-  // }
 }

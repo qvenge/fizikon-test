@@ -1,4 +1,4 @@
-import settings from './settings.json';
+import gradientsData from './gradients.json';
 
 import './sphere-sprite.css';
 
@@ -6,9 +6,9 @@ export class SphereSprite {
   constructor(params = {}) {
     this._className = 'sphere-sprite';
     this._elem = null;
-    this._r = params.radius ?? settings.r;
-    this._cx = params.cx ?? settings.cx;
-    this._cy = params.cy ?? settings.cy;
+    this._r = params.radius ?? 10;
+    this._cx = params.cx ?? 5;
+    this._cy = params.cy ?? 5;
     this._init();
   }
 
@@ -46,7 +46,7 @@ export class SphereSprite {
     circle.setAttributeNS(null, 'r', this._r);
     this._circle = circle;
 
-    const gradients = settings.gradients
+    const gradients = gradientsData
       .filter((gradient) => gradient?.colors?.length > 1)
       .map((gradient) =>
         [
