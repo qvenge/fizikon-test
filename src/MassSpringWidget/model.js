@@ -79,9 +79,7 @@ export class MassSpringModel {
 
   start() {
     if (!this.isActive()) {
-      if (this._startTime === null) {
-        this._startTime = performance.now();
-      }
+      this._startTime = performance.now();
       this.notify();
     }
   }
